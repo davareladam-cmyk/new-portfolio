@@ -3,6 +3,8 @@ import { forwardRef } from "react";
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "ghost";
   href?: string;
+  target?: string;
+  rel?: string;
   children: React.ReactNode;
 }
 
@@ -17,10 +19,13 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     const classes = `${base} ${variants[variant]} ${className}`;
 
     if (as === "a") {
+      const { href, target, rel, ...rest } = props as ButtonProps;
       return (
         <a
           ref={ref as React.Ref<HTMLAnchorElement>}
-          href={(props as any).href || "#"}
+          href={href || "#"}
+          target={target}
+          rel={rel}
           className={classes}
           data-hoverable
         >
