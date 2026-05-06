@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { PERSONAL, STATS } from "@/lib/constants";
+import { fadeUp } from "@/lib/animations";
 
 function Counter({ target, label }: { target: number; label: string }) {
   const ref = useRef(null);
@@ -34,10 +35,7 @@ function Counter({ target, label }: { target: number; label: string }) {
   );
 }
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
+const sectionVariants = fadeUp;
 
 export function About() {
   const ref = useRef(null);
